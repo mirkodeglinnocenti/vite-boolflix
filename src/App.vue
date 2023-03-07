@@ -1,5 +1,5 @@
 <template>
-  <Header />
+  <Header @onInput="fetchResults"/>
   <Main />
 </template>
 
@@ -33,7 +33,7 @@ export default{
                 params:{
                     api_key: '8767f185cb61d1dc9df638268490e6ef',
                     language: 'it_IT',
-                    query: 'ritorno'
+                    query: this.store.inputSearch
                 }
             })
             .then((res) => {

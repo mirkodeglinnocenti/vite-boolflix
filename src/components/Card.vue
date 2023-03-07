@@ -1,8 +1,10 @@
 <template>
 
-    <li>
-        <p>{{ result.title }}</p>
-        <p>{{ result.original_title }}</p>
+    <li class="card-result">
+        <p>Titolo: {{ result.title }}</p>
+        <p>Titolo originale: {{ result.original_title }}</p>
+        <p>Lingua originale: {{ result.original_language }}</p>
+        <p>Lingua originale: {{ result.vote_average }}</p>
     </li>
 
 
@@ -21,5 +23,12 @@ export default{
 </script>
 
 <style lang="scss" scoped>
+
+.card-result{
+    background-color: green;
+    padding: 10px;
+}
+
+
 
 </style>

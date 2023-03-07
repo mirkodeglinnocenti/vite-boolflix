@@ -1,8 +1,8 @@
 <template>
 
-    <main>
+    <main class="main">
         <div class="container">
-            <ul>
+            <ul class="list-results">
                 <Card v-for="result in results" :key="result.id" :result="result"/>
             </ul>
         </div>
@@ -37,4 +37,14 @@ export default{
 </script>
 
 <style lang="scss" scoped>
+
+.main{
+    padding: 30px;
+}
+.list-results{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
 </style>
