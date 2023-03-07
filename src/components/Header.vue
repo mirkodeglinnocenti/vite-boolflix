@@ -8,7 +8,7 @@
                 </div>
 
                 <div class="col">
-                    <input type="text" placeholder="Inserisci nome">
+                    <input @keyup.enter="$emit('onInput')" v-model="store.inputSearch" type="text" placeholder="Inserisci nome">
                 </div>
 
             </div>
