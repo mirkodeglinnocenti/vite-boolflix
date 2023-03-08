@@ -32,7 +32,7 @@ export default{
             .get('https://api.themoviedb.org/3/search/movie',{
                 params:{
                     api_key: '8767f185cb61d1dc9df638268490e6ef',
-                    language: 'it_IT',
+                    language: 'it-IT',
                     query: this.store.inputSearch
                 }
             })
@@ -41,10 +41,10 @@ export default{
             })
         }
     }
-    ,
-    created(){
-        this.fetchResults()
-    }
+    // ,
+    // created(){
+    //     this.fetchResults()
+    // }
 }
 </script>
 
