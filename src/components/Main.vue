@@ -3,7 +3,7 @@
     <main class="main">
         <div class="container">
             <ul class="list-results">
-                <Card v-for="result in results" :key="result.id" :result="result"/>
+                <Card v-for="result in moviesAndTvSeries" :key="result.id" :result="result"/>
             </ul>
         </div>
     </main>
@@ -31,7 +31,14 @@ export default{
     computed:{
         results(){
             return this.store.results
-        }
+        },
+        tvSeries(){
+            return this.store.tvSeries
+        },
+        moviesAndTvSeries(){
+            return this.store.results.concat(this.store.tvSeries)
+    
+        }   
     }
 }
 </script>
