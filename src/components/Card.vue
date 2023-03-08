@@ -14,7 +14,7 @@
             <div>
                 <ul class="starList">
                     <li v-for="n in setStars(result.vote_average)">
-                        <font-awesome-icon icon="fa-solid fa-star"/>
+                        <font-awesome-icon class="star-solid" icon="fa-solid fa-star"/>
                     </li>
                     <li v-for="n in (5 - setStars(result.vote_average))">
                         <font-awesome-icon icon="fa-regular fa-star" />
@@ -95,6 +95,10 @@ export default{
 
 .vote{
     gap: 5px;
+}
+
+.star-solid{
+    color: rgb(177, 160, 5);
 }
 
 
