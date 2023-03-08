@@ -9,7 +9,21 @@
             <img v-if="!setFlag(result.original_language) == ''" class="flag-icon" :src="setFlag(result.original_language)" alt="flag">
             <p v-else>{{ result.original_language }}</p>
         </div>
-        <p>Voto: {{ result.vote_average }}</p>
+        <div class="row vote">
+            <p>Voto:</p>
+            <div>
+                <ul class="starList">
+                    <li v-for="n in setStars(result.vote_average)">
+                        <font-awesome-icon icon="fa-solid fa-star"/>
+                    </li>
+                    <li v-for="n in (5 - setStars(result.vote_average))">
+                        <font-awesome-icon icon="fa-regular fa-star" />
+                    </li>
+                </ul>
+                
+            </div>
+        </div>
+        
     </li>
 
 
@@ -46,11 +60,17 @@ export default{
                     return '';
                     
             }
+        },
+        setStars(vote){
+            const numStars = Math.ceil(vote / 2);
+            return numStars
         }
     }
 
 }
 </script>
+
+
 
 <style lang="scss" scoped>
 
@@ -69,7 +89,13 @@ export default{
     }
 }
 
+.starList{
+    display: flex;
+}
 
+.vote{
+    gap: 5px;
+}
 
 
 </style>
