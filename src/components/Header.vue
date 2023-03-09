@@ -33,6 +33,7 @@ export default{
         resetResult(){
             this.store.movies = [];
             this.store.tvSeries = [];
+            this.store.inputSearch = '';
         }
     }
 }

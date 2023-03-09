@@ -2,27 +2,31 @@
 
     <li class="card-result">
         <img :src="getImage()" alt="">
-        <p>Titolo: {{ result.title !== undefined ? result.title : result.name }}</p>
-        <p>Titolo originale: {{ result.original_title ? result.original_title : result.original_name }}</p>
-        <div class="language-box">
-            <p>Lingua:</p>
-            <img v-if="!setFlag(result.original_language) == ''" class="flag-icon" :src="setFlag(result.original_language)" alt="flag">
-            <p v-else>{{ result.original_language }}</p>
-        </div>
-        <div class="row vote">
-            <p>Voto:</p>
-            <div>
-                <ul class="starList">
-                    <li v-for="n in setStars(result.vote_average)">
-                        <font-awesome-icon class="star-solid" icon="fa-solid fa-star"/>
-                    </li>
-                    <li v-for="n in (5 - setStars(result.vote_average))">
-                        <font-awesome-icon icon="fa-regular fa-star" />
-                    </li>
-                </ul>
-                
+        <div class="card-description">
+            <p><span class="card-description_title">Titolo:</span> {{ result.title !== undefined ? result.title : result.name }}</p>
+            <p><span class="card-description_title">Titolo originale:</span> {{ result.original_title ? result.original_title : result.original_name }}</p>
+            <div class="language-box">
+                <span class="card-description_title">Lingua:</span>
+                <img v-if="!setFlag(result.original_language) == ''" class="flag-icon" :src="setFlag(result.original_language)" alt="flag">
+                <p v-else>{{ result.original_language }}</p>
             </div>
+            <div class="row vote">
+                <span class="card-description_title">Voto:</span>
+                <div>
+                    <ul class="starList">
+                        <li v-for="n in setStars(result.vote_average)">
+                            <font-awesome-icon class="star-solid" icon="fa-solid fa-star"/>
+                        </li>
+                        <li v-for="n in (5 - setStars(result.vote_average))">
+                            <font-awesome-icon icon="fa-regular fa-star" />
+                        </li>
+                    </ul>
+                    
+                </div>
+            </div>
+            <p><span class="card-description_title">Trama:</span> {{ result.overview }}</p>
         </div>
+        
         
     </li>
 
@@ -79,7 +83,15 @@ export default{
 <style lang="scss" scoped>
 
 .card-result{
-    
+    position: relative;
+
+    img{
+        display: block;
+    }
+    .card-description_title{
+        font-weight: 600;
+        color: lightcoral;
+    }
     .language-box{
         display: flex;
         flex-wrap: wrap;
@@ -102,9 +114,36 @@ export default{
         color: rgb(177, 160, 5);
     }
 
+
+    .card-description{
+        display: none;
+    }
+
 }
 
 
+.card-result:hover{
 
+    overflow: hidden;
+    
+    .card-description{
+        overflow-y: scroll;
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        padding: 30px;
+        background-color: rgb(0, 0, 0, 0.9);
+    }
+
+}
+
+// Barra di scorrimento delle card trasparente
+::-webkit-scrollbar {
+    width: 0px;
+    background-color: transparent;
+}
 
 </style>
