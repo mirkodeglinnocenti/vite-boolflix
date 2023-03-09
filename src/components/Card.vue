@@ -2,8 +2,8 @@
 
     <li class="card-result">
         <img :src="getImage()" alt="">
-        <p>Titolo: {{ result.title }}</p>
-        <p>Titolo originale: {{ result.original_title }}</p>
+        <p>Titolo: {{ result.title !== undefined ? result.title : result.name }}</p>
+        <p>Titolo originale: {{ result.original_title ? result.original_title : result.original_name }}</p>
         <div class="language-box">
             <p>Lingua:</p>
             <img v-if="!setFlag(result.original_language) == ''" class="flag-icon" :src="setFlag(result.original_language)" alt="flag">
@@ -39,11 +39,16 @@ export default{
     },
     methods:{
         getImage(){
-        const base_url = 'https://image.tmdb.org/t/p/';
-        const file_size = 'w500';
-        const file_path = this.result.poster_path;
-        const poster_path = base_url + file_size + file_path;
-        return poster_path;
+            const base_url = 'https://image.tmdb.org/t/p/';
+            const file_size = 'w500';
+            const file_path = this.result.poster_path;
+            let poster_path = base_url + file_size + file_path;
+            console.log(poster_path)
+
+            if (poster_path === 'https://image.tmdb.org/t/p/w500null'){
+                poster_path = '/img/copertina_boolflix.png';
+            }
+            return poster_path;
         },
         setFlag (language){
             switch (language){

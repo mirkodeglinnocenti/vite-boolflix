@@ -37,7 +37,6 @@ export default{
         },
         moviesAndTvSeries(){
             return this.store.results.concat(this.store.tvSeries)
-    
         }   
     }
 }

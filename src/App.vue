@@ -44,6 +44,9 @@ export default{
         .then((res) => {
             this.store.results = res.data.results;
         })
+        .catch(() =>{
+          this.store.results = []
+        })
       },
       fetchSeries(){
         axios
@@ -56,6 +59,9 @@ export default{
         })
         .then((res) => {
             this.store.tvSeries = res.data.results;
+        })
+        .catch(() => {
+          this.store.tvSeries = []
         })
       }
     }
