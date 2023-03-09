@@ -33,7 +33,7 @@
 export default{
     props:{
         result: {
-            type: Array,
+            type: Object,
             required: true
         }
     },
@@ -43,7 +43,6 @@ export default{
             const file_size = 'w500';
             const file_path = this.result.poster_path;
             let poster_path = base_url + file_size + file_path;
-            console.log(poster_path)
 
             if (poster_path === 'https://image.tmdb.org/t/p/w500null'){
                 poster_path = '/img/copertina_boolflix.png';
@@ -80,31 +79,32 @@ export default{
 <style lang="scss" scoped>
 
 .card-result{
-    // background-color: green;
-    padding: 10px;
-}
-
-.language-box{
+    
+    .language-box{
         display: flex;
         flex-wrap: wrap;
         align-items: center;
         gap: 5px;
-    .flag-icon{
-    width: 20px;
+        .flag-icon{
+        width: 20px;
+        }
     }
+
+    .starList{
+        display: flex;
+    }
+
+    .vote{
+        gap: 5px;
+    }
+
+    .star-solid{
+        color: rgb(177, 160, 5);
+    }
+
 }
 
-.starList{
-    display: flex;
-}
 
-.vote{
-    gap: 5px;
-}
-
-.star-solid{
-    color: rgb(177, 160, 5);
-}
 
 
 </style>

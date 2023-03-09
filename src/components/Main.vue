@@ -2,9 +2,10 @@
 
     <main class="main">
         <div class="container">
-            <ul class="list-results">
+            <ul v-if="moviesAndTvSeries.length > 0" class="list-results">
                 <Card v-for="result in moviesAndTvSeries" :key="result.id" :result="result"/>
             </ul>
+            <p class="message-no-results" v-else>Nessun Risultato</p>
         </div>
     </main>
     
@@ -29,14 +30,14 @@ export default{
         }
     },
     computed:{
-        results(){
-            return this.store.results
+        movies(){
+            return this.store.movies
         },
         tvSeries(){
             return this.store.tvSeries
         },
         moviesAndTvSeries(){
-            return this.store.results.concat(this.store.tvSeries)
+            return this.store.movies.concat(this.store.tvSeries)
         }   
     }
 }
@@ -46,11 +47,16 @@ export default{
 
 .main{
     padding: 30px;
-}
-.list-results{
+
+    .message-no-results{
+        font-size: 1.6rem;
+    }
+    .list-results{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
+    gap: 20px;
 }
+}
+
 
 </style>
