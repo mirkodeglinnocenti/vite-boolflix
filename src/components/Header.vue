@@ -5,7 +5,9 @@
             <div class="row">
 
                 <div class="col">
-                    <img class="logo" src="/img/logo_boolflix.png" alt="logo di Boolflix">
+                    <a href="#">
+                        <img @click="resetResult" class="logo" src="/img/logo_boolflix.png" alt="logo di Boolflix">
+                    </a>
                 </div>
 
                 <div class="col">
@@ -25,6 +27,12 @@ export default{
     data (){
         return{
           store,
+        }
+    },
+    methods:{
+        resetResult(){
+            this.store.movies = [];
+            this.store.tvSeries = [];
         }
     }
 }
