@@ -3,7 +3,7 @@
     <li class="card-result">
         <img :src="getImage()" alt="">
         <p class="card-category">{{ result.title !== undefined ? film : serieTv  }}</p>
-        <div @click="fetchActors" class="card-description">
+        <div @mouseenter="fetchActors" class="card-description">
             <p><span class="card-description_title">Titolo:</span> {{ result.title !== undefined ? result.title : result.name }}</p>
             <p><span class="card-description_title">Titolo originale:</span> {{ result.original_title ? result.original_title : result.original_name }}</p>
             <div class="language-box">
@@ -27,7 +27,13 @@
             <!-- una soluzione -->
             <!-- <div v-for="(actor,index) in actors.slice(0, 5)" :key="index">{{ actor.name }}</div> -->
             <!-- seconda soluzione -->
-            <p v-for="name in getActors()">{{ name }}</p>
+            <div class="row">
+                <span class="card-description_title">Attori:</span>
+                <ul class="cast-list">
+                    <li v-for="(name, index) in getActors()" :key="index">{{ name }},</li>
+                </ul>
+            </div>
+            
             <p><span class="card-description_title">Trama:</span> {{ result.overview }}</p>
         </div>
         
@@ -195,7 +201,9 @@ export default{
 
 }
 
-
+.cast-list{
+    display: contents;
+}
 .card-result:hover{
     overflow: hidden;
     
