@@ -38,8 +38,9 @@ export default{
         },
         moviesAndTvSeries(){
             return this.store.movies.concat(this.store.tvSeries)
-        }   
+        }
     }
+        
 }
 </script>
 

@@ -2,7 +2,8 @@
 
     <li class="card-result">
         <img :src="getImage()" alt="">
-        <div class="card-description">
+        <p class="card-category">{{ result.title !== undefined ? film : serieTv  }}</p>
+        <div @click="fetchActors" class="card-description">
             <p><span class="card-description_title">Titolo:</span> {{ result.title !== undefined ? result.title : result.name }}</p>
             <p><span class="card-description_title">Titolo originale:</span> {{ result.original_title ? result.original_title : result.original_name }}</p>
             <div class="language-box">
@@ -20,10 +21,13 @@
                         <li v-for="n in (5 - setStars(result.vote_average))">
                             <font-awesome-icon icon="fa-regular fa-star" />
                         </li>
-                    </ul>
-                    
+                    </ul> 
                 </div>
             </div>
+            <!-- una soluzione -->
+            <!-- <div v-for="(actor,index) in actors.slice(0, 5)" :key="index">{{ actor.name }}</div> -->
+            <!-- seconda soluzione -->
+            <p v-for="name in getActors()">{{ name }}</p>
             <p><span class="card-description_title">Trama:</span> {{ result.overview }}</p>
         </div>
         
@@ -34,12 +38,34 @@
 </template>
 
 <script>
+
+// Axios per le api
+import axios from 'axios';
+// store
+import store from '../store';
+
+
 export default{
     props:{
         result: {
             type: Object,
             required: true
         }
+    },
+    data(){
+        return {
+            film: 'Film',
+            serieTv: 'Serie TV',
+            store
+        }
+    },
+    computed:{
+        resultId(){
+            return this.result.id
+        },
+        actors(){
+            return this.store.actors
+        }  
     },
     methods:{
         getImage(){
@@ -70,8 +96,47 @@ export default{
             }
         },
         setStars(vote){
-            const numStars = Math.ceil(vote / 2);
+            const numStars = Math.round(vote / 2);
             return numStars
+        },
+        fetchActors(){
+            let base = 'https://api.themoviedb.org/3/'
+            let film = 'movie/'
+            let tv = 'tv/'
+            let id = this.resultId
+            let endPoint = '/credits'
+            let test = ''
+
+            if (this.result.title !== undefined){
+                test = base + film + id + endPoint
+            } else {
+                test = base + tv + id + endPoint
+            }
+
+            console.log(test);
+            axios
+            .get(test,{
+                params:{
+                    api_key: '8767f185cb61d1dc9df638268490e6ef',
+                    language: 'it-IT'
+                }
+            })
+            .then((res) => {
+                this.store.actors = res.data.cast
+                console.log(this.store.actors)
+            })
+            
+        },
+        getActors(){
+
+            let attori = []
+
+            for(let i = 0; i < 5; i++){
+                let attore = this.actors[i].name;
+                attori.push(attore)
+            }
+
+            return attori
         }
     }
 
@@ -119,11 +184,19 @@ export default{
         display: none;
     }
 
+    .card-category{
+        position: absolute;
+        left: 0px;
+        bottom: 10px;
+        padding: 5px;
+        background-color: red;
+
+    }
+
 }
 
 
 .card-result:hover{
-
     overflow: hidden;
     
     .card-description{
@@ -142,8 +215,7 @@ export default{
 
 // Barra di scorrimento delle card trasparente
 ::-webkit-scrollbar {
-    width: 0px;
-    background-color: transparent;
+    display: none;
 }
 
 </style>

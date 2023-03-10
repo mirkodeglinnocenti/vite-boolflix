@@ -4,6 +4,7 @@ const store = reactive ({
     movies:[],
     tvSeries:[],
     inputSearch: '',
+    actors:[]
 
 })
 
