@@ -25,14 +25,14 @@
                 </div>
             </div>
             <!-- una soluzione -->
-            <!-- <div v-for="(actor,index) in actors.slice(0, 5)" :key="index">{{ actor.name }}</div> -->
+            <div v-for="(actor,index) in actors.slice(0, 5)" :key="index">{{ actor.name }}</div>
             <!-- seconda soluzione -->
-            <div class="row">
+            <!-- <div class="row">
                 <span class="card-description_title">Attori:</span>
                 <ul class="cast-list">
                     <li v-for="(name, index) in getActors()" :key="index">{{ name }},</li>
                 </ul>
-            </div>
+            </div> -->
             
             <p><span class="card-description_title">Trama:</span> {{ result.overview }}</p>
         </div>
@@ -188,6 +188,7 @@ export default{
 
     .card-description{
         display: none;
+
     }
 
     .card-category{
